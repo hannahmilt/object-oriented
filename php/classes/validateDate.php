@@ -1,5 +1,5 @@
 <?php
-namespace hannahmilt\object-oriented;
+namespace hannahmilt\objectOriented;
 /*
  * Trait to Validate a mySQL Date
  *
