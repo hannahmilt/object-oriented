@@ -1,5 +1,5 @@
 <?php
-namespace hannahmilt\objectOriented;
+namespace Hannahmilt\ObjectOriented;
 
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
@@ -129,7 +129,7 @@ public function setAuthorActivationToken(string $newAuthorActivationToken) : voi
  * @return string value of authorAvatarUrl
  */
 
-public function get authorAvatarUrl() : string {
+public function getAuthorAvatarUrl() : string {
 	return($this->authorAvatarUrl);
 }
 
@@ -207,7 +207,7 @@ public function getAuthorHash(): string {
 public function setAuthorHash(string $newAuthorHash): void {
 	//enforce that the has is properly formatted
 	$newAuthorHash = trim($newAuthorHash);
-	if(empty($newAuthorHash === true) {
+	if(empty($newAuthorHash === true)) {
 		throw(new\InvalidArgumentException("author password has empty or insecure"));
 	}
 	//enforce the the hash is exactly 97 characters.
@@ -244,4 +244,17 @@ public function setAuthorUsername (string $newAuthorUsername): void {
 	$this->authorUsername = $newAuthorUsername;
 
 }
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["authorId"] = $this->authorId->toString();
+
+		return($fields);
+	}
 }
