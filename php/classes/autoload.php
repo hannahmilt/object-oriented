@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * PSR-4 Compliant Autoloader
  *
  * This will dynamically load classes by resolving the prefix and class name. This is the method that frameworks
@@ -10,7 +10,7 @@
  * @see http://www.php-fig.org/psr/psr-4/examples/ PSR-4 Example Autoloader
  */
 spl_autoload_register(function($class) {
-	/*
+	/**
 	 * CONFIGURABLE PARAMETERS
 	 * prefix: the prefix for all the classes (i.e., the namespace)
 	 * baseDir: the base directory for all classes (default = current directory)

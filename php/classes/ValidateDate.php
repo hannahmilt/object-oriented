@@ -1,6 +1,6 @@
 <?php
 namespace Hannahmilt\ObjectOriented;
-/*
+/**
  * Trait to Validate a mySQL Date
  *
  * This trait will inject a private method to validate a mySQL style date (e.g., 2016-01-15 15:32:48.643216). It will
@@ -10,7 +10,7 @@ namespace Hannahmilt\ObjectOriented;
  * @version 4.0.1
  */
 trait ValidateDate {
-	/*
+	/**
 	 * custom filter for mySQL date
 	 *
 	 * Converts a string to a DateTime object; this is designed to be used within a mutator method.
@@ -43,7 +43,7 @@ trait ValidateDate {
 		$newDate = \DateTime::createFromFormat("Y-m-d H:i:s", $newDate . " 00:00:00");
 		return($newDate);
 	}
-	/*
+	/**
 	 * custom filter for mySQL style dates
 	 *
 	 * Converts a string to a DateTime object; this is designed to be used within a mutator method.
@@ -74,7 +74,7 @@ trait ValidateDate {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
-	/*
+	/**
 	 * custom filter for mySQL style times
 	 *
 	 * validates a time string; this is designed to be used within a mutator method.
