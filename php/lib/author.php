@@ -8,11 +8,11 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
 
 use Hannahmilt\ObjectOriented\Author;
 
-$authorId = "06hc079-34hf-5uda-95t7-737c64r1h8r6";
-$authorActivationToken = "New_Activation_Token";
+$authorId = "c94b85b6-d2d4-4550-900c-52e53e482f55";
+$authorActivationToken = bin2hex(random_bytes(16));
 $authorAvatarUrl = "https://avatar.com";
 $authorEmail = "fakemail@website.com";
-$authorHash = "hash-hash-hash";
+$authorHash = password_hash( "password",PASSWORD_ARGON2ID, ["time_cost" => 9]);;
 $authorUsername = "I-am-a-real-person";
 
 //creating the author object here

@@ -213,7 +213,7 @@ public function getAuthorHash(): string {
 public function setAuthorHash(string $newAuthorHash): void {
 	//enforce that the has is properly formatted
 	$newAuthorHash = trim($newAuthorHash);
-	if(empty($newAuthorHash === true)) {
+	if(empty($newAuthorHash) === true) {
 		throw(new\InvalidArgumentException("author password has empty or insecure"));
 	}
 	//enforce the the hash is exactly 97 characters.
@@ -237,14 +237,12 @@ public function getAuthorUsername(): string {
  * @throws \TypeError if the activation token is not a string
  */
 
+
 public function setAuthorUsername (string $newAuthorUsername): void {
-	if($newAuthorUsername === null) {
-	$this->authorUsername = null;
-		return;
-	}
-	$newAuthorUsername = strtolower(trim($newAuthorUsername));
-		if(ctype_xdigit($newAuthorUsername) === false) {
-			throw(new\RangeException("username is not valid"));
+	$newAuthorUsername = trim($newAuthorUsername);
+	$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newAuthorUsername) === true) {
+			throw(new\InvalidArgumentException("username is not valid"));
 	}
 		if(strlen($newAuthorUsername) >32) {
 			throw(new \RangeException("author username has to be 32 characters"));
