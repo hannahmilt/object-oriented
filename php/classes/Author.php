@@ -267,3 +267,74 @@ public function jsonSerialize() : array {
 	return($fields);
 	}
 }
+/*
+//Insert statement method
+
+public function insert(\PDO $pdo) : void {
+	//query template
+	$query = "INSERT INTO author(authorId, authorActivationToken, authorAvatarUrl, authorEmail, authorHash, authorUsername)
+				VALUES(:authorId, :authorActivationToken, :authorAvatarUrl, :authorEmail, :authorHash, :authorUsername)";
+
+	//send the statement to PDO so it knows what to do.
+	$statement = $pdo->prepare($query);
+
+	//bind the member variable to the place holders in the template
+	//left out date because no date in data
+	$parameters = ["authorId" => $this->authorId->getBytes(),
+						"authorActivationToken" => $this->authorActivationToken-> ,
+						"authorAvatarUrl" => $this->authorAvatarUrl-> ,
+						"authorEmail" => $this->authorEmail-> ,
+						"authorHash" => $this->authorHash-> ,
+						"authorUsername" => $this->authorUsername->getBytes()];
+
+	//Execute the statement on the database
+	$statement->execute($parameters);
+}
+
+//Update statement method
+public functionudate(\PDO $pdo) : void {
+
+	//create query template
+	$query = "UPDATE author
+				SET authorId = :authorId, :authorActivationToken, :authorAvatarUrl, :authorEmail, :authorHash, :authorUsername
+				WHERE authorId = :authorId";
+
+	//prepare a statement using the SQL so PDO knows what to do.
+	$statement = $pdo->prepare($query);
+
+	//put the dat into the right format for MySQL. this project didn't have date so didn't put it
+
+	// bind the member variables to the place holders in in the template
+	$parameters = ["authorId" => $this->authorId->getBytes(),
+						"authorActivationToken" => $this->authorActivationToken-> ,
+						"authorAvatarUrl" => $this->authorAvatarUrl-> ,
+						"authorEmail" => $this->authorEmail-> ,
+						"authorHash" => $this->authorHash-> ,
+						"authorUsername" => $this->authorUsername-> ];
+
+	//now execute he statement on the database
+	$statement->execute($parameters);
+}
+
+//delete statement method
+public function delete(\PDO $pdo) : void {
+
+	//create query template
+	$query = "DELETE FROM author
+					WHERE authorId = :authorId";
+
+	//prepare a statement object using the SQL so pdo knows what to do.
+	$statement = $pdo->prepare($query);
+
+	//bind the member variables to the place holder in the template
+	$parameter = ["authorId" => $this->authorId->getBytes()];
+
+	//now execute the statement on the database.
+	$statement->execute($parametrs);
+}
+
+//GetFooBy Bar method that returns single object
+
+//getFooByBar method that returns a full array
+
+*/
