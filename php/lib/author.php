@@ -12,7 +12,7 @@ $authorId = "c94b85b6-d2d4-4550-900c-52e53e482f55";
 $authorActivationToken = bin2hex(random_bytes(16));
 $authorAvatarUrl = "https://avatar.com";
 $authorEmail = "fakemail@website.com";
-$authorHash = password_hash( "password",PASSWORD_ARGON2ID, ["time_cost" => 9]);;
+$authorHash = password_hash( "password",PASSWORD_ARGON2I, ["time_cost" => 45]);;
 $authorUsername = "I-am-a-real-person";
 
 //creating the author object here
