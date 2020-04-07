@@ -14,7 +14,7 @@ use Ramsey\Uuid\Uuid;
  *
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  * @version 3.0.0
- */
+**/
 
 class Author implements \JsonSerializable {
 	use ValidateUuid;
@@ -103,7 +103,7 @@ class Author implements \JsonSerializable {
 		$this->authorId = $uuid;
 	}
 	/* accessor for authorActivationToken */
-	public function getauthorActivationToken() : string {
+	public function getAuthorActivationToken() : string {
 		return($this-> authorActivationToken);
 	}
 
@@ -421,3 +421,5 @@ class Author implements \JsonSerializable {
 		return($fields);
 		}
 }
+
+
