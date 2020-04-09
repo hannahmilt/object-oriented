@@ -28,8 +28,22 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 	}
 
 	public function testInsertValidAuthor() : void {
+		//get count of author records in db before we run the test.
+		$numRows = $this->getConnection()->getRowCount("author");
 
+		//insert an author record in the db
+		$authorId = generateUuidV4()->toString();
+		$author = new Author($authorId, $this->VALID_AUTHOR_ACTIVATION_TOKEN, $this->VALID_AUTHOR_AVATAR_URL, $this->VALID_AUTHOR_EMAIL, $this->VALID_AUTHOR_HASH, $this->VALID_AUTHOR_USERNAME);
+		$author->insert($this->getPDO());
+
+		//check count of author records in the db after the insert
+		$numRowsAfterInsert = $this->getConnection()->getRowCount("author");
+		self::assertEquals($numRows + 1, $numRowsAfterInsert);
+
+		//get a copy of the record just inserted and validate the values
+		// make sure the values that went into the record are the same ones that come out
 	}
+	/*
 	public function testUpdateValidAuthor() : void {
 
 	}
@@ -42,6 +56,5 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 	public function testGetValidAuthors() : void {
 
 	}
-
-
+*/
 }
