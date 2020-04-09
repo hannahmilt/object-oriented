@@ -1,4 +1,5 @@
 <?php
+
 namespace Hannahmilt\ObjectOriented;
 
 require_once("autoload.php");
@@ -22,12 +23,13 @@ class Author implements \JsonSerializable {
 	/*Write and document all state variables in the class*/
 	/** id for this Author is the primary key
 	*@var Uuid $authorId
-	*/
+	**/
 	private $authorId;
+
 
 	/** token handed out to varify that the profile is valid and not malicious.
 	* @var string $authorActivationToken
-	 */
+	 **/
 	private $authorActivationToken;
 	/**
 	* @var
