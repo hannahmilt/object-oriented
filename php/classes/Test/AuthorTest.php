@@ -69,8 +69,8 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 		$author = new Author($authorId, $this->VALID_AUTHOR_ACTIVATION_TOKEN, $this->VALID_AUTHOR_AVATAR_URL, $this->VALID_AUTHOR_EMAIL, $this->VALID_AUTHOR_HASH, $this->VALID_AUTHOR_USERNAME);
 		$author->insert($this->getPDO());
 
-		//update a balue on the record I just inserted.
-		$author->setAuthorUsername($this->VALID_AUTHOR_USERNAME . "changed");
+		//update a value on the record I just inserted.
+		$changedAuthorUsername= $this->VALID_AUTHOR_USERNAME . "changed";
 		$author->setAuthorUsername($changedAuthorUsername);
 		$author ->update($this->getPDO());
 
@@ -94,11 +94,11 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
 
 		self::assertEquals($this->VALID_AUTHOR_HASH, $pdoAuthor->getAuthorHash());
-		self::assertEquals($this->VALID_AUTHOR_USERNAME, $pdoAuthor->getAuthorUsername());
+		self::assertNotEquals($this->VALID_AUTHOR_USERNAME, $pdoAuthor->getAuthorUsername());
 		//verify that the saved username is same as the update username
 		self::assertEquals($changedAuthorUsername, $pdoAuthor->getAuthorUsername());
 	}
-
+/*
 		public function testDeleteValidAuthor() : void {
 			//get count of author records in db before we run the test.
 			$numRows = $this->getConnection()->getRowCount("author");
@@ -119,6 +119,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 			$pdoAuthor= Author::getAuthorByAuthorId($this->getPDO(), $author->getAuthorId()->toString());
 
 		}
+	*/
 		/*
 		public function testGetValidAuthorByAuthorId() : void {
 

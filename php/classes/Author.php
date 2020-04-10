@@ -189,12 +189,11 @@ class Author implements \JsonSerializable {
 		$newAuthorEmail = trim($newAuthorEmail);
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_VALIDATE_EMAIL);
 
-/*
+
 		if(empty($newAuthorEmail) === true) {
-			echo $newAuthorEmail. 'after empty';
 			throw(new \InvalidArgumentException("author email is empty or insecure"));
 		}
-*/
+
 		//verify the email will fit in the database
 		if(strlen($newAuthorEmail) > 128) {
 			throw(new \RangeException("author email is too large"));
@@ -254,7 +253,6 @@ class Author implements \JsonSerializable {
 			if(empty($newAuthorUsername) === true) {
 				throw(new\InvalidArgumentException("username is not valid"));
 		}
-			echo $newAuthorUsername. "before if";
 			if(strlen($newAuthorUsername) >32) {
 				throw(new \RangeException("author username has to be 32 characters"));
 		}
@@ -381,7 +379,7 @@ class Author implements \JsonSerializable {
 				$statement->setFetchMode(\PDO::FETCH_ASSOC);
 				$row = $statement->fetch();
 				if($row !== false) {
-					$author = new Author($row["authorId"], $row["authorActivationToken"], $row["authorAvatarUrl"], $row["authorAvatarUrl"], $row["authorEmail"], $row["authorHash"], $row["authorUsername"]);
+					$author = new Author($row["authorId"], $row["authorActivationToken"], $row["authorAvatarUrl"], $row["authorEmail"], $row["authorHash"], $row["authorUsername"]);
 				}
 		} catch(\Exception $exception) {
 			//if the row couldn't be converted, rethrow it
