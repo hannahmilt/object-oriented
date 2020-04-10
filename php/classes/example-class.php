@@ -11,7 +11,7 @@ use http\Exception\InvalidArgumentException;use Ramsey\Uuid\Uuid;
  * @author Hannahmilt <hmiltenberger@cnm.edu>
  */
 
-class Author implements \JasonSerializable{
+class HannahTest implements \JasonSerializable{
 	use ValidateUuid;
 
 	//this need to have primary keys first then alphabetical order for anything else

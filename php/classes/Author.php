@@ -5,6 +5,7 @@ namespace Hannahmilt\ObjectOriented;
 require_once("autoload.php");
 require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
+use http\Env\Request;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -183,15 +184,22 @@ class Author implements \JsonSerializable {
 
 	public function setAuthorEmail(string $newAuthorEmail): void {
 		//verify the email is secure
+
+
 		$newAuthorEmail = trim($newAuthorEmail);
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_VALIDATE_EMAIL);
+
+/*
 		if(empty($newAuthorEmail) === true) {
+			echo $newAuthorEmail. 'after empty';
 			throw(new \InvalidArgumentException("author email is empty or insecure"));
 		}
+*/
 		//verify the email will fit in the database
 		if(strlen($newAuthorEmail) > 128) {
 			throw(new \RangeException("author email is too large"));
 		}
+
 		//store the email
 		$this->authorEmail = $newAuthorEmail;
 	}
@@ -218,8 +226,8 @@ class Author implements \JsonSerializable {
 		if(empty($newAuthorHash) === true) {
 			throw(new\InvalidArgumentException("author password has empty or insecure"));
 		}
-		//enforce the the hash is exactly 97 characters.
-		if(strlen($newAuthorHash) !== 97) {
+		//enforce the the hash doesn't exceed 97 characters.
+		if(strlen($newAuthorHash) > 97) {
 			throw(new \RangeException("author hash must be 97 characters"));
 		}
 		//store the hash
@@ -246,6 +254,7 @@ class Author implements \JsonSerializable {
 			if(empty($newAuthorUsername) === true) {
 				throw(new\InvalidArgumentException("username is not valid"));
 		}
+			echo $newAuthorUsername. "before if";
 			if(strlen($newAuthorUsername) >32) {
 				throw(new \RangeException("author username has to be 32 characters"));
 		}
@@ -360,6 +369,11 @@ class Author implements \JsonSerializable {
 		//create query template
 		$query = "SELECT authorId, authorActivationToken, authorAvatarUrl, authorEmail, authorHash, authorUsername FROM author WHERE authorId = :authorId";
 		$statement = $pdo->prepare($query);
+
+		//bing the author id to the place holder in the template
+		$parameters = ["authorId" => $authorId->getBytes()];
+		$statement->execute($parameters);
+
 
 		//grab the author from mySQL
 		try {
